@@ -14,22 +14,22 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Rhenald Nainggolan | Software Engineer",
+  title: "Rhenald Nainggolan — Software Engineer",
   description:
-    "Portfolio of Rhenald Nainggolan, an Informatics Engineering graduate focused on software engineering, web development, and data analytics.",
+    "Rhenald Nainggolan is a software engineer focused on backend systems, web applications, and cloud data operations.",
   openGraph: {
-    title: "Rhenald Nainggolan | Software Engineer",
+    title: "Rhenald Nainggolan — Software Engineer",
     description:
-      "Selected web and backend projects by Rhenald Nainggolan.",
+      "Explore the selected projects and experience of Rhenald Nainggolan, a software engineer working across backend, web, and data.",
     url: "https://rhenald-portofolio.vercel.app",
     siteName: "Rhenald Nainggolan Portfolio",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "Rhenald Nainggolan | Software Engineer",
+    title: "Rhenald Nainggolan — Software Engineer",
     description:
-      "Selected web and backend projects by Rhenald Nainggolan.",
+      "Selected projects and experience across backend, web, and data.",
   },
 };
 
