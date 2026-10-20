@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useRef, useEffect } from 'react';
 
 type CanvasStrokeStyle = string | CanvasGradient | CanvasPattern;
@@ -21,10 +22,9 @@ const Squares: React.FC<SquaresProps> = ({
   speed = 1,
   borderColor = '#999',
   squareSize = 40,
-  hoverFillColor = '#222'
+  hoverFillColor = '#222',
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const requestRef = useRef<number | null>(null);
   const numSquaresX = useRef<number>(0);
   const numSquaresY = useRef<number>(0);
   const gridOffset = useRef<GridOffset>({ x: 0, y: 0 });
@@ -34,20 +34,21 @@ const Squares: React.FC<SquaresProps> = ({
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let animationFrame: number | null = null;
+    let reduceMotion = motionPreference.matches;
 
     const resizeCanvas = () => {
       canvas.width = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
       numSquaresX.current = Math.ceil(canvas.width / squareSize) + 1;
       numSquaresY.current = Math.ceil(canvas.height / squareSize) + 1;
+      drawGrid();
     };
 
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
     const drawGrid = () => {
-      if (!ctx) return;
-
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const startX = Math.floor(gridOffset.current.x / squareSize) * squareSize;
@@ -78,16 +79,17 @@ const Squares: React.FC<SquaresProps> = ({
         0,
         canvas.width / 2,
         canvas.height / 2,
-        Math.sqrt(canvas.width ** 2 + canvas.height ** 2) / 2
+        Math.sqrt(canvas.width ** 2 + canvas.height ** 2) / 2,
       );
       gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
       gradient.addColorStop(1, '#060010');
-
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     };
 
     const updateAnimation = () => {
+      if (reduceMotion) return;
+
       const effectiveSpeed = Math.max(speed, 0.1);
       switch (direction) {
         case 'right':
@@ -106,51 +108,63 @@ const Squares: React.FC<SquaresProps> = ({
           gridOffset.current.x = (gridOffset.current.x - effectiveSpeed + squareSize) % squareSize;
           gridOffset.current.y = (gridOffset.current.y - effectiveSpeed + squareSize) % squareSize;
           break;
-        default:
-          break;
       }
 
       drawGrid();
-      requestRef.current = requestAnimationFrame(updateAnimation);
+      animationFrame = window.requestAnimationFrame(updateAnimation);
+    };
+
+    const syncMotionPreference = () => {
+      reduceMotion = motionPreference.matches;
+
+      if (reduceMotion) {
+        if (animationFrame !== null) {
+          window.cancelAnimationFrame(animationFrame);
+          animationFrame = null;
+        }
+        drawGrid();
+      } else if (animationFrame === null) {
+        animationFrame = window.requestAnimationFrame(updateAnimation);
+      }
     };
 
     const handleMouseMove = (event: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       const mouseX = event.clientX - rect.left;
       const mouseY = event.clientY - rect.top;
-
       const startX = Math.floor(gridOffset.current.x / squareSize) * squareSize;
       const startY = Math.floor(gridOffset.current.y / squareSize) * squareSize;
 
-      const hoveredSquareX = Math.floor((mouseX + gridOffset.current.x - startX) / squareSize);
-      const hoveredSquareY = Math.floor((mouseY + gridOffset.current.y - startY) / squareSize);
+      hoveredSquareRef.current = {
+        x: Math.floor((mouseX + gridOffset.current.x - startX) / squareSize),
+        y: Math.floor((mouseY + gridOffset.current.y - startY) / squareSize),
+      };
 
-      if (
-        !hoveredSquareRef.current ||
-        hoveredSquareRef.current.x !== hoveredSquareX ||
-        hoveredSquareRef.current.y !== hoveredSquareY
-      ) {
-        hoveredSquareRef.current = { x: hoveredSquareX, y: hoveredSquareY };
-      }
+      if (reduceMotion) drawGrid();
     };
 
     const handleMouseLeave = () => {
       hoveredSquareRef.current = null;
+      if (reduceMotion) drawGrid();
     };
 
+    window.addEventListener('resize', resizeCanvas);
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('mouseleave', handleMouseLeave);
-    requestRef.current = requestAnimationFrame(updateAnimation);
+    motionPreference.addEventListener('change', syncMotionPreference);
+    resizeCanvas();
+    syncMotionPreference();
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
       canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mouseleave', handleMouseLeave);
+      motionPreference.removeEventListener('change', syncMotionPreference);
+      if (animationFrame !== null) window.cancelAnimationFrame(animationFrame);
     };
   }, [direction, speed, borderColor, hoverFillColor, squareSize]);
 
-  return <canvas ref={canvasRef} className="w-full h-full border-none block"></canvas>;
+  return <canvas ref={canvasRef} aria-hidden="true" className="block h-full w-full border-none" />;
 };
 
 export default Squares;
