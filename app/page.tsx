@@ -5,16 +5,18 @@ import Squares from "./components/Squares";
 const projects = [
   {
     title: "Lavender Workshop Invoice",
+    category: "Full-stack app",
     description:
-      "A workshop management app for service and parts invoices, customer records, vehicle history, and Excel imports. It supports local browser storage and an optional Go/Gin + PostgreSQL API.",
-    stack: ["React", "TypeScript", "Vite", "XLSX", "Go", "Gin", "PostgreSQL"],
+      "An invoice and workshop management app for customer records, vehicle history, service and parts billing, and Excel imports. It supports local storage with an optional Go/Gin + PostgreSQL API.",
+    stack: ["React", "TypeScript", "Vite", "Go", "PostgreSQL"],
     href: "https://github.com/renallll/workshop-invoice",
   },
   {
     title: "Go Todo API",
+    category: "Backend API",
     description:
-      "A REST API with registration/login, JWT-protected task CRUD, and per-user ownership. It uses handler/service/repository layers, PostgreSQL and GORM, with Swagger docs, Docker Compose, unit tests, and GitHub Actions CI.",
-    stack: ["Go", "Gin", "PostgreSQL", "GORM", "JWT", "Docker", "Swagger", "GitHub Actions"],
+      "A REST API for user registration, JWT authentication, and per-user task management. Built with layered Go services, PostgreSQL/GORM, Swagger docs, Docker Compose, unit tests, and GitHub Actions CI.",
+    stack: ["Go", "Gin", "PostgreSQL", "JWT", "Docker"],
     href: "https://github.com/renallll/go-todo-api",
   },
 ];
@@ -231,36 +233,45 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="grid gap-4 md:auto-rows-fr md:grid-cols-2">
             {projects.map((project, index) => (
               <article
                 key={project.title}
-                className="flex h-full flex-col rounded-2xl border border-white/10 bg-[#20242e]/90 p-6 shadow-xl shadow-black/10 backdrop-blur-sm sm:p-8"
+                className="flex h-full min-h-[23rem] flex-col rounded-2xl border border-white/10 bg-gradient-to-br from-[#252a35] to-[#1d2029] p-6 shadow-lg shadow-black/10 transition-colors hover:border-[#a9ef5b]/35 sm:p-7"
               >
-                <p className="text-sm font-medium text-[#a9ef5b]">
-                  Project 0{index + 1}
-                </p>
-                <h3 className="mt-4 text-xl font-semibold">{project.title}</h3>
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#a9ef5b]">
+                    Project 0{index + 1}
+                  </p>
+                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-slate-300">
+                    {project.category}
+                  </span>
+                </div>
+                <h3 className="mt-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                  {project.title}
+                </h3>
                 <p className="mt-3 flex-1 leading-7 text-slate-300">{project.description}</p>
                 <ul aria-label={`${project.title} technologies`} className="mt-6 flex flex-wrap gap-2">
                   {project.stack.map((technology) => (
                     <li
                       key={technology}
-                      className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300"
+                      className="rounded-full border border-white/10 bg-black/10 px-3 py-1.5 text-xs text-slate-300"
                     >
                       {technology}
                     </li>
                   ))}
                 </ul>
-                <Link
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-7 w-fit font-medium text-white underline decoration-[#75D500] underline-offset-4 hover:text-[#a9ef5b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#a9ef5b]"
-                >
-                  View source <span aria-hidden="true">↗</span>
-                  <span className="sr-only"> for {project.title}</span>
-                </Link>
+                <div className="mt-7 border-t border-white/10 pt-5">
+                  <Link
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-[#75D500]/30 bg-[#75D500]/10 px-4 py-2.5 text-sm font-semibold text-[#d5f5b1] transition-colors hover:border-[#75D500]/60 hover:bg-[#75D500]/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a9ef5b]"
+                  >
+                    View on GitHub <span aria-hidden="true">↗</span>
+                    <span className="sr-only"> for {project.title}</span>
+                  </Link>
+                </div>
               </article>
             ))}
           </div>
