@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Lanyard from "./components/lanyard";
 import Squares from "./components/Squares";
 
 const projects = [
@@ -31,7 +30,7 @@ export default function Home() {
     <main className="relative min-h-screen overflow-x-hidden bg-[#171a22] text-white">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 opacity-50">
         <Squares
-          speed={0.35}
+          speed={0}
           squareSize={56}
           direction="diagonal"
           borderColor="rgba(148, 163, 184, 0.22)"
@@ -46,8 +45,25 @@ export default function Home() {
         >
           <div className="relative hidden min-h-[32rem] items-center justify-center lg:flex">
             <div className="absolute inset-0 rounded-full bg-[#75D500]/[0.06] blur-3xl" />
-            <div className="relative h-[34rem] w-full">
-              <Lanyard position={[0, 0, 12]} gravity={[0, -40, 0]} />
+            <div
+              aria-hidden="true"
+              className="relative flex h-[34rem] w-full items-center justify-center"
+            >
+              <div className="absolute h-80 w-80 rounded-full bg-[#75D500]/[0.08] blur-3xl" />
+              <div className="relative flex w-72 -rotate-3 flex-col items-center">
+                <div className="z-10 -mb-3 h-24 w-12 rounded-b-2xl border-x-4 border-b-4 border-[#91ed28]/60 bg-[#75D500]/20" />
+                <div className="z-20 flex h-80 w-full flex-col items-center justify-center rounded-[2rem] border border-[#a9ef5b]/25 bg-gradient-to-br from-[#303744] via-[#202631] to-[#171a22] px-6 text-center shadow-2xl shadow-black/40">
+                  <div className="mb-5 flex h-28 w-28 items-center justify-center rounded-full border border-[#a9ef5b]/40 bg-[#75D500]/10 text-4xl font-bold tracking-tight text-[#a9ef5b]">
+                    RN
+                  </div>
+                  <p className="text-xl font-semibold text-white">Rhenald Nainggolan</p>
+                  <p className="mt-2 text-sm text-slate-300">Software Engineer</p>
+                  <div className="mt-6 h-px w-full bg-white/10" />
+                  <p className="mt-4 text-xs uppercase tracking-[0.22em] text-[#a9ef5b]">
+                    Portfolio · 2026
+                  </p>
+                </div>
+              </div>
             </div>
             <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.25em] text-slate-400">
               Software · Data · Design
@@ -155,3 +171,4 @@ export default function Home() {
     </main>
   );
 }
+
