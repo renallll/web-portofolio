@@ -93,7 +93,7 @@ export default function Home() {
           aria-labelledby="intro-title"
           className="grid min-h-[85vh] grid-cols-1 items-center gap-8 py-16 lg:grid-cols-2 lg:gap-12 lg:py-20"
         >
-          <div className="relative flex min-h-[24rem] items-center justify-center lg:min-h-[32rem]">
+          <div className="relative flex min-h-[25rem] items-center justify-center lg:min-h-[34rem]">
             <div className="absolute inset-0 rounded-full bg-[#75D500]/[0.06] blur-3xl" />
             <div
               aria-hidden="true"
@@ -122,9 +122,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.25em] text-slate-400">
-              Software · Data · Design
-            </p>
           </div>
 
           <div className="max-w-2xl">
