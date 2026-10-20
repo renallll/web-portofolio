@@ -88,9 +88,12 @@ const Squares: React.FC<SquaresProps> = ({
     };
 
     const updateAnimation = () => {
-      if (reduceMotion) return;
+      if (reduceMotion || speed <= 0) {
+        animationFrame = null;
+        return;
+      }
 
-      const effectiveSpeed = Math.max(speed, 0.1);
+      const effectiveSpeed = speed;
       switch (direction) {
         case 'right':
           gridOffset.current.x = (gridOffset.current.x - effectiveSpeed + squareSize) % squareSize;
@@ -117,7 +120,7 @@ const Squares: React.FC<SquaresProps> = ({
     const syncMotionPreference = () => {
       reduceMotion = motionPreference.matches;
 
-      if (reduceMotion) {
+      if (reduceMotion || speed <= 0) {
         if (animationFrame !== null) {
           window.cancelAnimationFrame(animationFrame);
           animationFrame = null;
@@ -140,12 +143,12 @@ const Squares: React.FC<SquaresProps> = ({
         y: Math.floor((mouseY + gridOffset.current.y - startY) / squareSize),
       };
 
-      if (reduceMotion) drawGrid();
+      if (reduceMotion || speed <= 0) drawGrid();
     };
 
     const handleMouseLeave = () => {
       hoveredSquareRef.current = null;
-      if (reduceMotion) drawGrid();
+      if (reduceMotion || speed <= 0) drawGrid();
     };
 
     window.addEventListener('resize', resizeCanvas);
@@ -168,3 +171,4 @@ const Squares: React.FC<SquaresProps> = ({
 };
 
 export default Squares;
+
