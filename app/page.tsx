@@ -1,200 +1,157 @@
-import Image from "next/image";
 import Link from "next/link";
 import Lanyard from "./components/lanyard";
-import RotatingText from "./components/RotatingText";
-import SplitText from "./components/SplitText";
-import BlurText from "./components/BlurText";
-import AnimatedContent from "./components/AnimatedContent";
 import Squares from "./components/Squares";
-import GradientText from "./components/GradientText";
-import CircularText from "./components/CircularText";
-import Dock from "./components/Dock";
-import { Timeline } from "./components/timeline";
 
+const projects = [
+  {
+    title: "Lavender Workshop Invoice",
+    description:
+      "An invoice management app for an automotive workshop, covering customers, vehicle history, Excel imports, and a Go API integration.",
+    stack: ["React", "TypeScript", "Go", "PostgreSQL"],
+    href: "https://github.com/renallll/workshop-invoice",
+  },
+  {
+    title: "Go Todo API",
+    description:
+      "A REST API for task management with JWT authentication, PostgreSQL, layered services, Docker, Swagger documentation, and CI.",
+    stack: ["Go", "Gin", "PostgreSQL", "Docker"],
+    href: "https://github.com/renallll/go-todo-api",
+  },
+];
+
+const socialLinks = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/rhenaldnainggolan/" },
+  { label: "GitHub", href: "https://github.com/renallll" },
+  { label: "Instagram", href: "https://www.instagram.com/renal.a.n" },
+  { label: "WhatsApp", href: "https://wa.me/qr/6QBDQPT3TB4TF1" },
+];
 
 export default function Home() {
   return (
-    <div className='min-h-screen overflow-x-hidden bg-[#2E313D]'>
-      <div className="absolute top-0 right-0 left-0 bottom-0 w-full h-full">
+    <main className="relative min-h-screen overflow-x-hidden bg-[#171a22] text-white">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 opacity-50">
         <Squares
-          speed={0.5} 
-          squareSize={50}
-          direction='diagonal' // up, down, left, right, diagonal
-          borderColor='#6A6A6A'
-          hoverFillColor='#75D500'
+          speed={0.35}
+          squareSize={56}
+          direction="diagonal"
+          borderColor="rgba(148, 163, 184, 0.22)"
+          hoverFillColor="rgba(117, 213, 0, 0.16)"
         />
-      </div>      
-      <div className="container mx-auto min-h-screen py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12">
-          <div className="hidden lg:block col-span-6 relative">
-            <Lanyard 
-              position={[0, 0, 12]} 
-              gravity={[0, -40, 0]}
-              />
-          <div className="hidden lg:block absolute top-10 right-10 z-50">
-              <CircularText
-                text="RHENALD ✦ ADRIAN ✦ NAINGGOLAN ✦ "
-                onHover="speedUp"
-                spinDuration={20}
-                className=""
-              />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
+        <section
+          aria-labelledby="intro-title"
+          className="grid min-h-[85vh] grid-cols-1 items-center gap-8 py-16 lg:grid-cols-2 lg:gap-12 lg:py-20"
+        >
+          <div className="relative hidden min-h-[32rem] items-center justify-center lg:flex">
+            <div className="absolute inset-0 rounded-full bg-[#75D500]/[0.06] blur-3xl" />
+            <div className="relative h-[34rem] w-full">
+              <Lanyard position={[0, 0, 12]} gravity={[0, -40, 0]} />
             </div>
-          </div> 
-          <div className="lg:col-span-6">
-            <div className="flex items-center h-full">
-              <div className="flex flex-col gap-6">
-                <AnimatedContent 
-                  distance={150}
-                  direction="horizontal"
-                  reverse={false}
-                  duration={1.2}
-                  ease="bounce.out"
-                  initialOpacity={0.2}
-                  animateOpacity
-                  scale={1.1}
-                  threshold={0.2}
-                  delay={0.3}
-                >
-                  <div className="flex items-center gap-2">
-                    <h1 className="text-2xl font-bold text-white">Colab with me</h1>
-                      <RotatingText
-                        texts={['Web Development', 'Data Analytics', 'Software Engineering', 'UI/UX Design']}
-                        mainClassName="px-2 sm:px-2 md:px-3 bg-[#75D500] text-black overflow-hidden py-0.5 sm:py-1 justify-center rounded-lg text-2xl font-bold inline-flex transition-all"
-                        staggerFrom={"last"}
-                        initial={{ y: "100%" }}
-                        animate={{ y: 0 }}
-                        exit={{ y: "-120%" }}
-                        staggerDuration={0.025}
-                        splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-                        transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                        rotationInterval={2000}
-                      />
-                  </div>
-                </AnimatedContent>
-             
-              <div className="flex flex-col items-start">
-                <SplitText
-                  text="Rhenald Nainggolan"
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-start"
-                  delay={50}
-                  duration={0.6}
-                  ease="power3.out"
-                  splitType="chars"
-                  from={{ opacity: 0, y: 40 }}
-                  to={{ opacity: 1, y: 0 }}
-                  threshold={0.1}
-                  rootMargin="-100px"
-                  textAlign="center"  
-                />
-                <SplitText
-                  text="Software Engineering"
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-start text-[#75D500]"
-                  delay={80}
-                  duration={0.6}
-                  ease="power3.out"
-                  splitType="chars"
-                  from={{ opacity: 0, y: 40 }}
-                  to={{ opacity: 1, y: 0 }}
-                  threshold={0.1}
-                  rootMargin="-100px"
-                  textAlign="center"
-                />
-              </div>
-                <BlurText
-                  text="Fresh graduate Informatics Engineering from Universitas Katolik Santo Thomas with interests in software engineering, full-stack development, and data analytics. Experienced in coding and technical problem-solving through academic and internship projects, and eager to grow in a collaborative, dynamic environment."
-                  delay={50}
-                  animateBy="words"
-                  direction="top"
-                  className="text-xl mb-8"
-                />
-                <div className="flex items-center gap-4">
+            <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.25em] text-slate-400">
+              Software · Data · Design
+            </p>
+          </div>
+
+          <div className="max-w-2xl">
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#75D500]/30 bg-[#75D500]/10 px-4 py-2 text-sm font-medium text-[#a9ef5b]">
+              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#75D500]" />
+              Open to collaboration
+            </p>
+            <h1 id="intro-title" className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+              Rhenald Nainggolan
+            </h1>
+            <p className="mt-3 text-2xl font-semibold text-[#90e52d] sm:text-3xl">
+              Software Engineer
+            </p>
+            <p className="mt-6 max-w-xl text-base leading-8 text-slate-300 sm:text-lg">
+              Informatics Engineering graduate from Universitas Katolik Santo Thomas. I build web
+              applications and backend systems, and I enjoy solving practical problems with
+              software, thoughtful interfaces, and data.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              {socialLinks.map(({ label, href }) => (
                 <Link
-                  href="https://www.linkedin.com/in/rhenaldnainggolan/"
+                  key={label}
+                  href={href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="rounded-lg border border-white/15 bg-white/[0.04] px-4 py-2.5 text-sm font-medium text-slate-100 transition-colors hover:border-[#75D500]/70 hover:bg-[#75D500]/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a9ef5b]"
                 >
-                  <GradientText
-                    colors = {[
-                      '#0A66C2',
-                      '#0077B5',
-                      '#0084BF',
-                      '#00A0DC',
-                      '#0A66C2'
-                    ]}
-                    animationSpeed={3.5}
-                    showBorder
-                    className="px-4 py-2 sm:px-6 sm:py-4 rounded-lg"
-                  >
-                    Linkedin
-                  </GradientText>
+                  {label}
                 </Link>
-                <Link
-                  href="https://www.instagram.com/renal.a.n"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <GradientText
-                    colors = {[
-                      '#F58529',
-                      '#DD2A7B',
-                      '#8134AF',
-                      '#515BD4',
-                      '#F58529'
-                    ]}
-                    animationSpeed={3.5}
-                    showBorder
-                    className="px-4 py-2 sm:px-6 sm:py-4 rounded-lg"
-                  >
-                    Instagram
-                  </GradientText>
-                </Link>
-                <Link
-                  href="https://github.com/renallll"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <GradientText
-                    colors = {[
-                      '#F5F7FA', // silver terang (flash)
-                      '#E4E7EC', // silver muda
-                      '#C9CED6', // silver utama
-                      '#FFFFFF', // kilat putih
-                      '#F5F7FA'  // loop halus
-                    ]}
-                    animationSpeed={3.5}
-                    showBorder
-                    className="px-4 py-2 sm:px-6 sm:py-4 rounded-lg"
-                  >
-                    Github
-                  </GradientText>
-                </Link>
-                <Link
-                  href="https://wa.me/qr/6QBDQPT3TB4TF1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <GradientText
-                    colors = {[
-                      '#25D366',
-                      '#1EBEA5',
-                      '#20C997',
-                      '#128C7E',
-                      '#25D366'
-                    ]}
-                    animationSpeed={3.5}
-                    showBorder
-                    className="px-4 py-2 sm:px-6 sm:py-4 rounded-lg"
-                  >
-                    Whatsapp
-                  </GradientText>
-                </Link>
-                </div>
-              </div>
+              ))}
+              <Link
+                href="#projects"
+                className="rounded-lg bg-[#75D500] px-4 py-2.5 text-sm font-semibold text-[#10140b] transition-colors hover:bg-[#91ed28] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a9ef5b]"
+              >
+                View my work
+              </Link>
             </div>
           </div>
-        </div>
-      </div>      
-       
-    </div>
+        </section>
+
+        <section id="projects" aria-labelledby="projects-title" className="scroll-mt-12 pb-24">
+          <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#a9ef5b]">
+                Selected work
+              </p>
+              <h2 id="projects-title" className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+                Projects I&apos;ve built
+              </h2>
+            </div>
+            <Link
+              href="https://github.com/renallll?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-fit text-sm font-medium text-slate-300 underline decoration-[#75D500]/60 underline-offset-4 hover:text-white"
+            >
+              More on GitHub <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2">
+            {projects.map((project, index) => (
+              <article
+                key={project.title}
+                className="flex h-full flex-col rounded-2xl border border-white/10 bg-[#20242e]/90 p-6 shadow-xl shadow-black/10 backdrop-blur-sm sm:p-8"
+              >
+                <p className="text-sm font-medium text-[#a9ef5b]">
+                  Project 0{index + 1}
+                </p>
+                <h3 className="mt-4 text-xl font-semibold">{project.title}</h3>
+                <p className="mt-3 flex-1 leading-7 text-slate-300">{project.description}</p>
+                <ul aria-label={`${project.title} technologies`} className="mt-6 flex flex-wrap gap-2">
+                  {project.stack.map((technology) => (
+                    <li
+                      key={technology}
+                      className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300"
+                    >
+                      {technology}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-7 w-fit font-medium text-white underline decoration-[#75D500] underline-offset-4 hover:text-[#a9ef5b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#a9ef5b]"
+                >
+                  View source <span aria-hidden="true">↗</span>
+                  <span className="sr-only"> for {project.title}</span>
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <footer className="border-t border-white/10 py-7 text-sm text-slate-400">
+          <p>© {new Date().getFullYear()} Rhenald Nainggolan · Built with Next.js</p>
+        </footer>
+      </div>
+    </main>
   );
 }
