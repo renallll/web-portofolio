@@ -105,7 +105,7 @@ export default function Home() {
                 <div className="z-20 flex h-80 w-full flex-col items-center justify-center rounded-[2rem] border border-[#a9ef5b]/25 bg-gradient-to-br from-[#303744] via-[#202631] to-[#171a22] px-6 text-center shadow-2xl shadow-black/40">
                   <div className="relative mb-5 h-28 w-28 overflow-hidden rounded-full border border-[#a9ef5b]/40 bg-[#75D500]/10">
                     <Image
-                      src="/assets/renal.png"
+                      src="/assets/renal.jpeg"
                       alt="Rhenald Nainggolan"
                       fill
                       sizes="112px"
