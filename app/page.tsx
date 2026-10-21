@@ -126,7 +126,7 @@ export default function Home() {
             <div className="portrait-stamp" aria-hidden="true">SELECTED<br />WORK · 2026</div>
             <div className="portrait-frame">
               <Image
-                src="/assets/renal.png"
+                src="/assets/renal.jpeg"
                 alt="Portrait of Rhenald Nainggolan"
                 fill
                 priority
