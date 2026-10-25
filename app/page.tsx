@@ -109,7 +109,27 @@ export default function Home() {
 
       <main>
         <section id="home" className="hero page-wrap" aria-labelledby="hero-title">
-          <div className="hero-copy">
+          <div className="lanyard-stage" aria-label="Profile card">
+            <div className="lanyard-strap" aria-hidden="true" />
+            <article className="profile-card">
+              <div className="profile-avatar">
+                <Image
+                  src="/assets/renal.jpeg"
+                  alt="Portrait of Rhenald Nainggolan"
+                  fill
+                  priority
+                  sizes="112px"
+                  className="profile-image"
+                />
+              </div>
+              <h2>Rhenald Nainggolan</h2>
+              <p>Software Engineer</p>
+              <div className="profile-divider" />
+              <span>Backend · APIs · Data Operations</span>
+            </article>
+          </div>
+
+          <div className="hero-copy" id="about">
             <p className="eyebrow"><span className="eyebrow-dot" /> Backend-focused · data operations · Indonesia</p>
             <h1 id="hero-title">
               Rhenald
@@ -118,8 +138,9 @@ export default function Home() {
             <div className="hero-bottom">
               <p className="hero-role">Software Engineer <span>—</span> Backend systems &amp; data operations</p>
               <p className="hero-intro">
-                I build REST APIs and practical web apps, bringing hands-on experience in cloud data operations.
+                I&apos;m an Informatics Engineering graduate focused on backend software, with hands-on experience in cloud data operations. I build REST APIs and practical web apps with Go, PostgreSQL, React, and TypeScript.
               </p>
+              <p className="hero-education">Universitas Katolik Santo Thomas · Informatics Engineering</p>
               <div className="hero-actions">
                 <Link className="button button-primary" href="#work">
                   Explore my work <span aria-hidden="true">↘</span>
@@ -137,59 +158,14 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          <div className="portrait-stage">
-            <div className="portrait-stamp" aria-hidden="true">SELECTED<br />WORK · 2026</div>
-            <div className="portrait-frame">
-              <Image
-                src="/assets/renal.jpeg"
-                alt="Portrait of Rhenald Nainggolan"
-                fill
-                priority
-                sizes="(max-width: 760px) 86vw, 42vw"
-                className="portrait-image"
-              />
-            </div>
-            <div className="portrait-caption">
-              <span>Based in Indonesia</span>
-              <span className="caption-rule" />
-              <span>Backend · Web · Data</span>
-            </div>
-          </div>
-
-          <a className="scroll-cue" href="#about">
-            <span className="scroll-cue-line" aria-hidden="true" />
-            Scroll to explore
-          </a>
-        </section>
-
-        <section id="about" className="about-section page-wrap section-block" aria-labelledby="about-title">
-          <div className="section-kicker">A little about me</div>
-          <div className="about-grid">
-            <h2 id="about-title">Good software starts with <em>clear thinking.</em></h2>
-            <div className="about-copy">
-              <p>
-                I&apos;m an Informatics Engineering graduate from Universitas Katolik Santo Thomas, focused on backend software development with hands-on experience in data operations and cloud workflows.
-              </p>
-              <p>
-                I build REST APIs and web apps with Go, PostgreSQL, React, and TypeScript, connecting dependable systems with clear user experiences.
-              </p>
-            </div>
-          </div>
-          <h3 className="focus-heading">Areas of focus</h3>
-          <div className="focus-row">
-            <div className="focus-item"><strong>Backend systems</strong></div>
-            <div className="focus-item"><strong>Cloud data workflows</strong></div>
-            <div className="focus-item"><strong>Web applications</strong></div>
-          </div>
         </section>
 
         <section className="skills-section" aria-labelledby="skills-title">
           <div className="page-wrap section-block">
-            <div className="section-kicker section-kicker-light">Tools of the trade</div>
+            <div className="section-kicker section-kicker-light">Core skills</div>
             <div className="skills-heading">
-              <h2 id="skills-title">Built with curiosity.<br /><em>Shipped with care.</em></h2>
-              <p>Tools I use to turn complex needs into practical, maintainable software.</p>
+              <h2 id="skills-title">Tools I work with</h2>
+              <p>Technologies I use across backend development, web apps, and cloud data workflows.</p>
             </div>
             <div className="skills-grid">
               {skillGroups.map((group) => (
@@ -207,7 +183,7 @@ export default function Home() {
         <section id="work" className="work-section page-wrap section-block" aria-labelledby="work-title">
           <div className="section-kicker">Selected work</div>
           <div className="work-heading">
-            <h2 id="work-title">Things I&apos;ve<br /><em>put into the world.</em></h2>
+            <h2 id="work-title">Projects I&apos;ve built</h2>
             <Link className="text-link" href="https://github.com/renallll?tab=repositories" target="_blank" rel="noopener noreferrer">
               More on GitHub <span aria-hidden="true">↗</span>
             </Link>
@@ -238,38 +214,38 @@ export default function Home() {
 
         <section id="experience" className="experience-section page-wrap section-block" aria-labelledby="experience-title">
           <div className="section-kicker">The path so far</div>
-          <div className="experience-grid">
-            <div className="experience-intro">
-              <h2 id="experience-title">Experience<br /><em>&amp; education.</em></h2>
-              <p>Learning by building, supporting, and making the systems around me work better.</p>
-            </div>
-            <div className="timeline">
-              {experiences.map((experience) => (
-                <article className="timeline-entry" key={experience.company}>
-                  <div className="timeline-date">{experience.period}</div>
-                  <div className="timeline-content">
-                    <p className="timeline-company">{experience.company} <span>· {experience.location}</span></p>
-                    <h3>{experience.role}</h3>
-                    <p className="timeline-proof">
-                      <strong>{experience.proof.value}</strong>
-                      <span>{experience.proof.label}</span>
-                    </p>
-                    <ul>
-                      {experience.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
-                    </ul>
-                  </div>
-                </article>
-              ))}
-              <article className="timeline-entry education-entry">
-                <div className="timeline-date">{education.period}</div>
-                <div className="timeline-content">
-                  <p className="timeline-company">Education <span>· {education.location}</span></p>
-                  <h3>{education.degree}</h3>
-                  <p className="education-detail">{education.institution} <span>· GPA {education.gpa}</span></p>
-                </div>
-              </article>
-            </div>
+          <div className="experience-heading">
+            <h2 id="experience-title">My background</h2>
+            <p>Experience supporting data workflows, hardware, and operational systems.</p>
           </div>
+          <div className="experience-cards">
+            {experiences.map((experience) => (
+              <article className="experience-card" key={experience.company}>
+                <div className="experience-card-top">
+                  <p className="timeline-company">{experience.company} <span>· {experience.location}</span></p>
+                  <time className="timeline-date">{experience.period}</time>
+                </div>
+                <h3>{experience.role}</h3>
+                <p className="timeline-proof">
+                  <strong>{experience.proof.value}</strong>
+                  <span>{experience.proof.label}</span>
+                </p>
+                <ul className="experience-highlights">
+                  {experience.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <article className="education-card">
+            <p className="education-label">Education</p>
+            <div className="education-card-content">
+              <div>
+                <h3>{education.degree}</h3>
+                <p>{education.institution} · {education.location}</p>
+              </div>
+              <p className="education-period">{education.period} <span>· GPA {education.gpa}</span></p>
+            </div>
+          </article>
         </section>
 
         <section id="contact" className="contact-section page-wrap" aria-labelledby="contact-title">
