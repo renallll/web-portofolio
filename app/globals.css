@@ -793,18 +793,33 @@ a:focus-visible {
   padding-bottom: 6px;
 }
 
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .contact-action > p {
   color: rgba(244, 241, 233, 0.68);
 }
 
 .button-light {
-  margin-top: 12px;
   color: var(--ink);
   background: var(--paper);
 }
 
 .button-light:hover {
   background: white;
+}
+
+.button-whatsapp {
+  border: 1px solid rgba(244, 241, 233, 0.32);
+  color: var(--paper);
+  background: transparent;
+}
+
+.button-whatsapp:hover {
+  background: rgba(244, 241, 233, 0.1);
 }
 
 .contact-footer {
@@ -1101,6 +1116,15 @@ a:focus-visible {
   .button-light {
     max-width: 100%;
     font-size: 12px;
+  }
+
+  .contact-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .button-whatsapp {
+    max-width: 100%;
   }
 
   .contact-footer {

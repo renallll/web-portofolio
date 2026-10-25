@@ -255,9 +255,20 @@ export default function Home() {
               <h2 id="contact-title">Let&apos;s make<br /><em>something useful.</em></h2>
               <div className="contact-action">
                 <p>For conversations about software, backend systems, and data.</p>
-                <Link className="button button-light" href={"mailto:" + email}>
-                  {email} <span aria-hidden="true">↗</span>
-                </Link>
+                <div className="contact-actions">
+                  <Link className="button button-light" href={"mailto:" + email}>
+                    {email} <span aria-hidden="true">↗</span>
+                  </Link>
+                  <Link
+                    className="button button-whatsapp"
+                    href="https://wa.me/6281262598726"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Chat with Rhenald on WhatsApp"
+                  >
+                    Chat on WhatsApp <span aria-hidden="true">↗</span>
+                  </Link>
+                </div>
               </div>
             </div>
             <div className="contact-footer">
