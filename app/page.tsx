@@ -152,7 +152,13 @@ export default function Home() {
                 >
                   Download CV <span aria-hidden="true">↓</span>
                 </Link>
-                <Link className="text-link" href={"mailto:" + email}>
+                <Link
+                  className="button button-secondary"
+                  href="https://wa.me/6281262598726"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Get in touch with Rhenald on WhatsApp"
+                >
                   Get in touch <span aria-hidden="true">↗</span>
                 </Link>
               </div>
@@ -254,19 +260,23 @@ export default function Home() {
             <div className="contact-grid">
               <h2 id="contact-title">Let&apos;s make<br /><em>something useful.</em></h2>
               <div className="contact-action">
-                <p>For conversations about software, backend systems, and data.</p>
-                <div className="contact-actions">
-                  <Link className="button button-light" href={"mailto:" + email}>
-                    {email} <span aria-hidden="true">↗</span>
+                <p>Choose the contact method that works best for you.</p>
+                <div className="contact-methods">
+                  <Link className="contact-method" href={"mailto:" + email}>
+                    <span className="contact-method-label">Email</span>
+                    <span className="contact-method-value">{email}</span>
+                    <span className="contact-method-arrow" aria-hidden="true">↗</span>
                   </Link>
                   <Link
-                    className="button button-whatsapp"
+                    className="contact-method"
                     href="https://wa.me/6281262598726"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Chat with Rhenald on WhatsApp"
                   >
-                    Chat on WhatsApp <span aria-hidden="true">↗</span>
+                    <span className="contact-method-label">WhatsApp</span>
+                    <span className="contact-method-value">Message me directly</span>
+                    <span className="contact-method-arrow" aria-hidden="true">↗</span>
                   </Link>
                 </div>
               </div>

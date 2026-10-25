@@ -793,33 +793,55 @@ a:focus-visible {
   padding-bottom: 6px;
 }
 
-.contact-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
 .contact-action > p {
   color: rgba(244, 241, 233, 0.68);
 }
 
-.button-light {
-  color: var(--ink);
-  background: var(--paper);
+.contact-methods {
+  display: grid;
+  gap: 10px;
 }
 
-.button-light:hover {
-  background: white;
-}
-
-.button-whatsapp {
-  border: 1px solid rgba(244, 241, 233, 0.32);
+.contact-method {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 5px 16px;
+  padding: 14px 16px;
+  border: 1px solid rgba(244, 241, 233, 0.2);
+  border-radius: 16px;
   color: var(--paper);
-  background: transparent;
+  background: rgba(244, 241, 233, 0.045);
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
 
-.button-whatsapp:hover {
+.contact-method:hover {
+  border-color: rgba(244, 241, 233, 0.42);
   background: rgba(244, 241, 233, 0.1);
+  transform: translateY(-2px);
+}
+
+.contact-method-label {
+  color: rgba(244, 241, 233, 0.62);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.contact-method-value {
+  font-size: 14px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.contact-method-arrow {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  color: #aebcf3;
+  font-size: 17px;
+  font-weight: 700;
 }
 
 .contact-footer {
@@ -1113,18 +1135,12 @@ a:focus-visible {
     max-width: none;
   }
 
-  .button-light {
-    max-width: 100%;
-    font-size: 12px;
+  .contact-method {
+    padding: 13px 14px;
   }
 
-  .contact-actions {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .button-whatsapp {
-    max-width: 100%;
+  .contact-method-value {
+    font-size: 13px;
   }
 
   .contact-footer {
