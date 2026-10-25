@@ -3,17 +3,14 @@ import Link from "next/link";
 
 const skillGroups = [
   {
-    number: "01",
     title: "Backend & APIs",
     skills: ["Go", "Gin", "REST APIs", "PostgreSQL", "GORM", "JWT", "Docker"],
   },
   {
-    number: "02",
     title: "Web development",
     skills: ["React", "TypeScript", "JavaScript", "Vite"],
   },
   {
-    number: "03",
     title: "Data & cloud operations",
     skills: ["Python", "SQL", "ETL/ELT", "Alibaba Cloud DataWorks", "MaxCompute", "OSS"],
   },
@@ -21,7 +18,7 @@ const skillGroups = [
 
 const projects = [
   {
-    number: "01",
+    variant: "paper",
     category: "Full-stack app",
     title: "Lavender Workshop Invoice",
     description:
@@ -30,7 +27,7 @@ const projects = [
     href: "https://github.com/renallll/workshop-invoice",
   },
   {
-    number: "02",
+    variant: "blue",
     category: "Backend API",
     title: "Go Todo API",
     description:
@@ -139,7 +136,6 @@ export default function Home() {
               <span className="caption-rule" />
               <span>Backend · Web · Data</span>
             </div>
-            <span className="portrait-index" aria-hidden="true">01 / 04</span>
           </div>
 
           <a className="scroll-cue" href="#about">
@@ -149,7 +145,7 @@ export default function Home() {
         </section>
 
         <section id="about" className="about-section page-wrap section-block" aria-labelledby="about-title">
-          <div className="section-kicker"><span>01</span> A little about me</div>
+          <div className="section-kicker">A little about me</div>
           <div className="about-grid">
             <h2 id="about-title">Good software starts with <em>clear thinking.</em></h2>
             <div className="about-copy">
@@ -164,16 +160,17 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="focus-row" aria-label="Areas of focus">
-            <div className="focus-item"><span>01</span><strong>Backend systems</strong></div>
-            <div className="focus-item"><span>02</span><strong>Cloud data workflows</strong></div>
-            <div className="focus-item"><span>03</span><strong>Web applications</strong></div>
+          <h3 className="focus-heading">Areas of focus</h3>
+          <div className="focus-row">
+            <div className="focus-item"><strong>Backend systems</strong></div>
+            <div className="focus-item"><strong>Cloud data workflows</strong></div>
+            <div className="focus-item"><strong>Web applications</strong></div>
           </div>
         </section>
 
         <section className="skills-section" aria-labelledby="skills-title">
           <div className="page-wrap section-block">
-            <div className="section-kicker section-kicker-light"><span>02</span> Tools of the trade</div>
+            <div className="section-kicker section-kicker-light">Tools of the trade</div>
             <div className="skills-heading">
               <h2 id="skills-title">Built with curiosity.<br /><em>Shipped with care.</em></h2>
               <p>Tools I use to turn complex needs into practical, maintainable software.</p>
@@ -181,7 +178,6 @@ export default function Home() {
             <div className="skills-grid">
               {skillGroups.map((group) => (
                 <article className="skill-group" key={group.title}>
-                  <div className="skill-group-top"><span>{group.number}</span><span aria-hidden="true">↗</span></div>
                   <h3>{group.title}</h3>
                   <ul>
                     {group.skills.map((skill) => <li key={skill}>{skill}</li>)}
@@ -193,7 +189,7 @@ export default function Home() {
         </section>
 
         <section id="work" className="work-section page-wrap section-block" aria-labelledby="work-title">
-          <div className="section-kicker"><span>03</span> Selected work</div>
+          <div className="section-kicker">Selected work</div>
           <div className="work-heading">
             <h2 id="work-title">Things I&apos;ve<br /><em>put into the world.</em></h2>
             <Link className="text-link" href="https://github.com/renallll?tab=repositories" target="_blank" rel="noopener noreferrer">
@@ -202,9 +198,8 @@ export default function Home() {
           </div>
           <div className="projects-grid">
             {projects.map((project) => (
-              <article className={"project-card project-card-" + project.number} key={project.title}>
+              <article className={"project-card project-card-" + project.variant} key={project.title}>
                 <div className="project-meta">
-                  <span>{project.number} / 02</span>
                   <span className="project-category">{project.category}</span>
                 </div>
                 <div className="project-card-main">
@@ -217,14 +212,13 @@ export default function Home() {
                 <Link className="project-link" href={project.href} target="_blank" rel="noopener noreferrer">
                   View project on GitHub <span aria-hidden="true">↗</span>
                 </Link>
-                <span className="project-watermark" aria-hidden="true">{project.number}</span>
               </article>
             ))}
           </div>
         </section>
 
         <section id="experience" className="experience-section page-wrap section-block" aria-labelledby="experience-title">
-          <div className="section-kicker"><span>04</span> The path so far</div>
+          <div className="section-kicker">The path so far</div>
           <div className="experience-grid">
             <div className="experience-intro">
               <h2 id="experience-title">Experience<br /><em>&amp; education.</em></h2>
@@ -257,7 +251,7 @@ export default function Home() {
 
         <section id="contact" className="contact-section page-wrap" aria-labelledby="contact-title">
           <div className="contact-panel">
-            <div className="section-kicker section-kicker-light"><span>05</span> Have a project in mind?</div>
+            <div className="section-kicker section-kicker-light">Have a project in mind?</div>
             <div className="contact-grid">
               <h2 id="contact-title">Let&apos;s make<br /><em>something useful.</em></h2>
               <div className="contact-action">
