@@ -300,8 +300,10 @@ a:focus-visible {
 .profile-card {
   position: relative;
   z-index: 1;
-  width: min(100%, 350px);
+  width: 350px;
+  height: 350px;
   min-height: 350px;
+  flex: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -887,8 +889,8 @@ a:focus-visible {
 
   .hero {
     min-height: unset;
-    grid-template-columns: minmax(230px, 0.8fr) minmax(0, 1.2fr);
-    gap: 34px;
+    grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1.08fr);
+    gap: clamp(24px, 4vw, 34px);
     padding-top: 56px;
     padding-bottom: 72px;
   }
@@ -899,6 +901,12 @@ a:focus-visible {
 
   .lanyard-stage {
     min-height: 410px;
+  }
+
+  .profile-card {
+    width: 320px;
+    height: 340px;
+    min-height: 340px;
   }
 
   .skill-group {
@@ -983,7 +991,8 @@ a:focus-visible {
   }
 
   .profile-card {
-    width: min(86vw, 330px);
+    width: 330px;
+    height: 300px;
     min-height: 300px;
     padding: 25px 22px 22px;
   }
@@ -1163,6 +1172,35 @@ a:focus-visible {
   .site-footer span:nth-child(2) {
     order: 1;
     width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .profile-card {
+    width: 300px;
+  }
+}
+
+@media (max-width: 350px) {
+  .profile-card {
+    width: 270px;
+    height: 290px;
+    min-height: 290px;
+    padding: 21px 16px 18px;
+  }
+
+  .profile-avatar {
+    width: 84px;
+    height: 84px;
+  }
+
+  .profile-card h2 {
+    font-size: 17px;
+  }
+
+  .profile-card > span {
+    font-size: 9px;
+    letter-spacing: 0.1em;
   }
 }
 
