@@ -206,7 +206,7 @@ a:focus-visible {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 23px;
+  gap: 16px;
   margin-top: 25px;
 }
 
@@ -234,6 +234,16 @@ a:focus-visible {
 
 .button-primary:hover {
   background: #2445c6;
+}
+
+.button-secondary {
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: transparent;
+}
+
+.button-secondary:hover {
+  background: var(--paper-deep);
 }
 
 .text-link {
@@ -535,7 +545,7 @@ a:focus-visible {
 
 .project-card {
   position: relative;
-  min-height: 422px;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -591,6 +601,37 @@ a:focus-visible {
 
 .project-card-blue p {
   color: rgba(255, 255, 255, 0.76);
+}
+
+.project-highlights {
+  display: grid;
+  gap: 7px;
+  margin: 15px 0 0;
+  padding: 0;
+  color: #566071;
+  font-size: 13px;
+  line-height: 1.45;
+  list-style: none;
+}
+
+.project-highlights li {
+  display: flex;
+  gap: 9px;
+}
+
+.project-highlights li::before {
+  content: "↳";
+  flex: 0 0 auto;
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.project-card-blue .project-highlights {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.project-card-blue .project-highlights li::before {
+  color: #ffd0c4;
 }
 
 .project-stack {
@@ -686,6 +727,24 @@ a:focus-visible {
   margin: 9px 0 0;
   font-size: 20px;
   letter-spacing: -0.045em;
+}
+
+.timeline-proof {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 12px 0 0;
+}
+
+.timeline-proof strong {
+  color: var(--orange);
+  font-size: 20px;
+  letter-spacing: -0.04em;
+}
+
+.timeline-proof span {
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .timeline-content ul {
@@ -995,7 +1054,7 @@ a:focus-visible {
   }
 
   .project-card {
-    min-height: 390px;
+    min-height: 470px;
     padding: 22px 21px;
   }
 
@@ -1005,6 +1064,10 @@ a:focus-visible {
 
   .project-card p {
     font-size: 15px;
+  }
+
+  .project-highlights {
+    font-size: 13px;
   }
 
   .project-stack li {

@@ -22,7 +22,12 @@ const projects = [
     category: "Full-stack app",
     title: "Lavender Workshop Invoice",
     description:
-      "An invoice and workshop management app for customer records, vehicle history, service and parts billing, and Excel imports. It supports local storage with an optional Go/Gin + PostgreSQL API.",
+      "A workshop invoicing app for customer and vehicle records, service and parts billing, and Excel imports. It supports browser storage or an optional authenticated Go/Gin + PostgreSQL API.",
+    highlights: [
+      "Import invoice data from Excel",
+      "Track customers, vehicles, services, and parts",
+      "Use local storage or API-backed data",
+    ],
     stack: ["React", "TypeScript", "Vite", "Go", "PostgreSQL"],
     href: "https://github.com/renallll/workshop-invoice",
   },
@@ -31,7 +36,12 @@ const projects = [
     category: "Backend API",
     title: "Go Todo API",
     description:
-      "A REST API for user registration, JWT authentication, and per-user task management. Built with layered Go services, PostgreSQL/GORM, Swagger docs, Docker Compose, unit tests, and GitHub Actions CI.",
+      "A JWT-protected REST API where each user manages their own tasks, built with layered Go services and PostgreSQL/GORM.",
+    highlights: [
+      "Registration, login, and protected task CRUD",
+      "Separated handlers, services, and repositories",
+      "Swagger docs, unit tests, and GitHub Actions CI",
+    ],
     stack: ["Go", "Gin", "PostgreSQL", "JWT", "Docker"],
     href: "https://github.com/renallll/go-todo-api",
   },
@@ -43,10 +53,11 @@ const experiences = [
     role: "Data Analytics Operation",
     location: "Tangerang Selatan, Indonesia",
     period: "Sep – Dec 2025",
+    proof: { value: "4", label: "data source types integrated" },
     highlights: [
-      "Managed Alibaba Cloud DataWorks workflows for orchestration, scheduling, and dependencies.",
-      "Built ETL/ELT pipelines from REST APIs, MySQL/PostgreSQL RDS, and system logs into MaxCompute and OSS.",
-      "Monitored pipeline runs, resolved execution failures, and maintained data integrity across cloud storage formats.",
+      "Integrated REST APIs, MySQL, PostgreSQL RDS, and system logs into MaxCompute and OSS.",
+      "Scheduled DataWorks workflows, managed dependencies, and investigated failed pipeline runs.",
+      "Maintained data integrity across cloud storage formats.",
     ],
   },
   {
@@ -54,9 +65,10 @@ const experiences = [
     role: "IT Support",
     location: "Medan, Indonesia",
     period: "Sep – Oct 2023",
+    proof: { value: "100+", label: "computers supported for SSCASN" },
     highlights: [
-      "Set up and maintained 100+ computers and network equipment for the national SSCASN examination.",
-      "Backed up registration and test data, monitored system performance, and resolved issues during exam operations.",
+      "Set up and maintained computers and network equipment for the national SSCASN examination.",
+      "Backed up registration and test data, monitored system performance, and resolved technical issues during exam operations.",
     ],
   },
 ];
@@ -98,19 +110,26 @@ export default function Home() {
       <main>
         <section id="home" className="hero page-wrap" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="eyebrow"><span className="eyebrow-dot" /> Software engineer · Indonesia</p>
+            <p className="eyebrow"><span className="eyebrow-dot" /> Backend-focused · data operations · Indonesia</p>
             <h1 id="hero-title">
               Rhenald
               <span>Nainggolan<span className="title-period">.</span></span>
             </h1>
             <div className="hero-bottom">
-              <p className="hero-role">Software Engineer <span>—</span> Backend, web &amp; data</p>
+              <p className="hero-role">Software Engineer <span>—</span> Backend systems &amp; data operations</p>
               <p className="hero-intro">
-                I build dependable digital products, from well-structured APIs to clear, useful web experiences.
+                I build REST APIs and practical web apps, bringing hands-on experience in cloud data operations.
               </p>
               <div className="hero-actions">
                 <Link className="button button-primary" href="#work">
                   Explore my work <span aria-hidden="true">↘</span>
+                </Link>
+                <Link
+                  className="button button-secondary"
+                  href="/assets/CV_Rhenald.pdf"
+                  download="Rhenald-Nainggolan-CV.pdf"
+                >
+                  Download CV <span aria-hidden="true">↓</span>
                 </Link>
                 <Link className="text-link" href={"mailto:" + email}>
                   Get in touch <span aria-hidden="true">↗</span>
@@ -150,14 +169,11 @@ export default function Home() {
             <h2 id="about-title">Good software starts with <em>clear thinking.</em></h2>
             <div className="about-copy">
               <p>
-                I&apos;m an Informatics Engineering graduate from Universitas Katolik Santo Thomas, with experience in data operations, cloud workflows, and backend development.
+                I&apos;m an Informatics Engineering graduate from Universitas Katolik Santo Thomas, focused on backend software development with hands-on experience in data operations and cloud workflows.
               </p>
               <p>
-                I enjoy connecting the details behind a system with the people who use it—building REST APIs and web apps with Go, PostgreSQL, React, and TypeScript.
+                I build REST APIs and web apps with Go, PostgreSQL, React, and TypeScript, connecting dependable systems with clear user experiences.
               </p>
-              <Link className="text-link" href="/assets/CV_Rhenald.pdf" download="Rhenald-Nainggolan-CV.pdf">
-                Download my CV <span aria-hidden="true">↗</span>
-              </Link>
             </div>
           </div>
           <h3 className="focus-heading">Areas of focus</h3>
@@ -205,12 +221,15 @@ export default function Home() {
                 <div className="project-card-main">
                   <h3>{project.title}</h3>
                   <p>{project.description}</p>
+                  <ul className="project-highlights" aria-label={project.title + " features"}>
+                    {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+                  </ul>
                 </div>
                 <ul className="project-stack" aria-label={project.title + " technologies"}>
                   {project.stack.map((technology) => <li key={technology}>{technology}</li>)}
                 </ul>
                 <Link className="project-link" href={project.href} target="_blank" rel="noopener noreferrer">
-                  View project on GitHub <span aria-hidden="true">↗</span>
+                  View source &amp; documentation <span aria-hidden="true">↗</span>
                 </Link>
               </article>
             ))}
@@ -231,6 +250,10 @@ export default function Home() {
                   <div className="timeline-content">
                     <p className="timeline-company">{experience.company} <span>· {experience.location}</span></p>
                     <h3>{experience.role}</h3>
+                    <p className="timeline-proof">
+                      <strong>{experience.proof.value}</strong>
+                      <span>{experience.proof.label}</span>
+                    </p>
                     <ul>
                       {experience.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
                     </ul>
