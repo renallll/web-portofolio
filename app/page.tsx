@@ -20,30 +20,41 @@ const projects = [
   {
     variant: "paper",
     category: "Full-stack app",
+    screenshot: "/assets/projects/workshop-invoice-list.jpg",
+    screenshotAlt: "Lavender Workshop Invoice displaying invoice search filters and sample invoice records",
+    screenshotCaption: "Invoice list · sample records",
     title: "Lavender Workshop Invoice",
     description:
-      "A workshop invoicing app for customer and vehicle records, service and parts billing, and Excel imports. It supports browser storage or an optional authenticated Go/Gin + PostgreSQL API.",
+      "I built a browser-first invoice workflow for customer and vehicle history, service and parts billing, and Excel imports. It can use local browser storage or connect to a configured JWT-authenticated Go/Gin + PostgreSQL API.",
     highlights: [
-      "Import invoice data from Excel",
-      "Track customers, vehicles, services, and parts",
-      "Use local storage or API-backed data",
+      "Manage customers, vehicles, services, and spare parts",
+      "Import existing invoice data from Excel",
+      "Use local storage or an authenticated API",
     ],
     stack: ["React", "TypeScript", "Vite", "Go", "PostgreSQL"],
-    href: "https://github.com/renallll/workshop-invoice",
+    links: [
+      { label: "Source & setup", href: "https://github.com/renallll/workshop-invoice" },
+    ],
   },
   {
     variant: "blue",
     category: "Backend API",
+    screenshot: "/assets/projects/go-todo-api-swagger.jpg",
+    screenshotAlt: "Swagger UI displaying Go Todo API authentication and task CRUD endpoints",
+    screenshotCaption: "Swagger UI · authentication and task routes",
     title: "Go Todo API",
     description:
-      "A JWT-protected REST API where each user manages their own tasks, built with layered Go services and PostgreSQL/GORM.",
+      "I implemented user registration, login, and JWT-protected task CRUD with per-user ownership and separated handler, service, and repository layers. Swagger, unit tests, Docker Compose, and GitHub Actions make the API easier to inspect and run.",
     highlights: [
-      "Registration, login, and protected task CRUD",
-      "Separated handlers, services, and repositories",
-      "Swagger docs, unit tests, and GitHub Actions CI",
+      "Each user can access only their own tasks",
+      "Swagger specification and service unit tests",
+      "Docker Compose and GitHub Actions CI",
     ],
     stack: ["Go", "Gin", "PostgreSQL", "JWT", "Docker"],
-    href: "https://github.com/renallll/go-todo-api",
+    links: [
+      { label: "Source code", href: "https://github.com/renallll/go-todo-api" },
+      { label: "API specification", href: "https://github.com/renallll/go-todo-api/blob/main/docs/swagger.yaml" },
+    ],
   },
 ];
 
@@ -84,7 +95,7 @@ const education = {
 const socialLinks = [
   { label: "GitHub", href: "https://github.com/renallll" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/rhenaldnainggolan/" },
-  { label: "Instagram", href: "https://www.instagram.com/renal.a.n" },
+  { label: "Instagram", href: "https://www.instagram.com/renaladriann/" },
 ];
 
 const email = "rhenaldnadrian@gmail.com";
@@ -125,7 +136,7 @@ export default function Home() {
               <h2>Rhenald Nainggolan</h2>
               <p>Software Engineer</p>
               <div className="profile-divider" />
-              <span>Backend · APIs · Data Operations</span>
+              <span>Portfolio · 2026</span>
             </article>
           </div>
 
@@ -160,6 +171,14 @@ export default function Home() {
                   aria-label="Get in touch with Rhenald on WhatsApp"
                 >
                   Get in touch <span aria-hidden="true">↗</span>
+                </Link>
+                <Link
+                  className="button button-secondary hero-github-link"
+                  href="https://github.com/renallll"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub profile <span aria-hidden="true">↗</span>
                 </Link>
               </div>
             </div>
@@ -200,8 +219,29 @@ export default function Home() {
                 <div className="project-meta">
                   <span className="project-category">{project.category}</span>
                 </div>
+                <figure className="project-screenshot">
+                  <div className="project-screenshot-frame">
+                    <Link
+                      className="project-screenshot-link"
+                      href={project.screenshot}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={"Open full-size screenshot of " + project.title}
+                    >
+                      <Image
+                        src={project.screenshot}
+                        alt={project.screenshotAlt}
+                        fill
+                        sizes="(max-width: 760px) 100vw, 50vw"
+                        className="project-screenshot-image"
+                      />
+                    </Link>
+                  </div>
+                  <figcaption>{project.screenshotCaption}</figcaption>
+                </figure>
                 <div className="project-card-main">
                   <h3>{project.title}</h3>
+                  <span className="project-contribution-label">WHAT I BUILT</span>
                   <p>{project.description}</p>
                   <ul className="project-highlights" aria-label={project.title + " features"}>
                     {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
@@ -210,9 +250,13 @@ export default function Home() {
                 <ul className="project-stack" aria-label={project.title + " technologies"}>
                   {project.stack.map((technology) => <li key={technology}>{technology}</li>)}
                 </ul>
-                <Link className="project-link" href={project.href} target="_blank" rel="noopener noreferrer">
-                  View source &amp; documentation <span aria-hidden="true">↗</span>
-                </Link>
+                <div className="project-links">
+                  {project.links.map((link) => (
+                    <Link className="project-link" href={link.href} key={link.label} target="_blank" rel="noopener noreferrer">
+                      {link.label} <span aria-hidden="true">↗</span>
+                    </Link>
+                  ))}
+                </div>
               </article>
             ))}
           </div>
@@ -275,7 +319,7 @@ export default function Home() {
                     aria-label="Chat with Rhenald on WhatsApp"
                   >
                     <span className="contact-method-label">WhatsApp</span>
-                    <span className="contact-method-value">Message me directly</span>
+                    <span className="contact-method-value">+62 812-6259-8726</span>
                     <span className="contact-method-arrow" aria-hidden="true">↗</span>
                   </Link>
                 </div>
